@@ -8,15 +8,15 @@ interface BingoSquareProps {
 
 export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
   const baseClasses =
-    'relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight';
+    'relative flex items-center justify-center rounded-[1.75rem] border-2 p-3 text-center transition-all duration-200 select-none min-h-[72px] text-[0.84rem] leading-snug font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d8b268]';
 
   const stateClasses = square.isMarked
     ? isWinning
-      ? 'bg-amber-200 border-amber-400 text-amber-900'
-      : 'bg-marked border-marked-border text-green-800'
-    : 'bg-white text-gray-700 active:bg-gray-100';
+      ? 'bg-[#1d1f24] border-[#d8b268] text-[#f8f3ec] shadow-[0_0_0_6px_rgba(216,178,104,0.14)]'
+      : 'bg-[#1b1d23] border-[#6c5f47] text-[#e8e3dc] shadow-[0_0_0_3px_rgba(216,178,104,0.08)]'
+    : 'bg-[#111216] border-[#24262c] text-[#ccc8c2] hover:border-[#d8b268] hover:bg-[#16171c] active:scale-[0.98]';
 
-  const freeSpaceClasses = square.isFreeSpace ? 'font-bold text-sm' : '';
+  const freeSpaceClasses = square.isFreeSpace ? 'text-[#d8b268]' : '';
 
   return (
     <button
@@ -24,11 +24,20 @@ export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
       disabled={square.isFreeSpace}
       className={`${baseClasses} ${stateClasses} ${freeSpaceClasses}`}
       aria-pressed={square.isMarked}
-      aria-label={square.isFreeSpace ? 'Free space' : square.text}
+      aria-label={square.isFreeSpace ? 'Hot tip free space' : square.text}
     >
-      <span className="wrap-break-word hyphens-auto">{square.text}</span>
+      <div className="flex flex-col items-center justify-center gap-1">
+        {square.isFreeSpace ? (
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs uppercase tracking-[0.28em] text-[#d8b268]">HOT TIP</span>
+            <span className="text-[0.68rem] uppercase tracking-[0.24em] text-[#9a979d]">Free</span>
+          </div>
+        ) : (
+          <span className="break-words hyphens-auto">{square.text}</span>
+        )}
+      </div>
       {square.isMarked && !square.isFreeSpace && (
-        <span className="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span className="absolute right-3 top-3 text-lg text-[#d8b268]">✓</span>
       )}
     </button>
   );

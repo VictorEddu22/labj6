@@ -17,6 +17,18 @@ Before starting dogfooding:
 3. **Dev tools accessible** → Check console for errors
 4. **Fresh state** → Clear localStorage if needed
 
+## Critical Dogfooding Approach
+
+This skill is not just a correctness checklist — it should also surface whether the game is actually fun to play.
+
+- Treat the app like a real user: start a session, tap through the board, complete a bingo, and ask whether the victory feels earned.
+- Pay attention to momentum: is there a compelling next step after winning, or does the game feel flat?
+- Judge the prompts for personality: are they interesting enough to spark conversation, or are they generic checklist items?
+- Verify whether the UI provides meaningful reward and guidance, not just a single modal.
+- Note if the experience is better suited for facilitation than for repeat play.
+
+Use this section to inform bug reports and UX feedback.
+
 ## Test Scenarios
 
 ### Scenario 1: Game Start Flow
